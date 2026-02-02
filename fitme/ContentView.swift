@@ -17,17 +17,18 @@ struct ContentView: View {
                     .padding(.leading)
                 Text("FitMe")
                     .font(.title)
-                    .foregroundColor(.black)
                 Spacer()
                 AvatarView(initials: "CY")
                     .accessibilityLabel("Profile")
                     .padding()
-            }.background(Color(.systemGray6))
+            }.background(Color(.systemBackground))
         
             Spacer()
         }
     }
 }
+
+
 
 struct AvatarView: View {
     var initials: String
