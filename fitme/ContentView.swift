@@ -22,8 +22,29 @@ struct ContentView: View {
                     .accessibilityLabel("Profile")
                     .padding()
             }.background(Color(.systemBackground))
-        
             Spacer()
+        }
+        TabView{
+            Text("Home")
+                .tabItem {
+                    Label("Home", systemImage: "house")
+                }
+            Text("Workouts")
+                .tabItem{
+                    Label("Workouts", systemImage: "dumbbell")
+                }
+            Text("Excercises")
+                .tabItem{
+                    Label("Excercises", systemImage: "book")
+                }
+            Text("Progress")
+                .tabItem{
+                    Label("Progress", systemImage: "chart.line.uptrend.xyaxis")
+                }
+            Text("Account")
+                .tabItem{
+                    Label("Account", systemImage: "person")
+                }
         }
     }
 }
