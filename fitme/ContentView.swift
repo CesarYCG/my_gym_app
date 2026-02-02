@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        // Heading
         VStack(){
             HStack{
                 Image(systemName: "dumbbell.fill")
@@ -22,8 +23,22 @@ struct ContentView: View {
                     .accessibilityLabel("Profile")
                     .padding()
             }.background(Color(.systemBackground))
-            Spacer()
         }
+        
+        // Body
+        VStack(){
+            HStack{
+                Text("Welcome back,")
+                    .font(.title2)
+                    .padding()
+                Spacer()
+            }
+        }
+        
+        
+        
+        
+        // Bottom
         TabView{
             Text("Home")
                 .tabItem {
