@@ -1,0 +1,13 @@
+# Xcode user settings
+xcuserdata/
+
+# Build products and temporary files
+build/
+DerivedData/
+
+# Swift Package Manager (optional, but standard)
+.swiftpm/xcode/package.xcworkspace/
+.swiftpm/xcode/xcuserdata/
+
+# OS-specific files
+.DS_Store
