@@ -9,61 +9,60 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        // Heading
-        VStack(){
-            HStack{
+        VStack(spacing: 0) {
+            // --- Heading ---
+            HStack {
                 Image(systemName: "dumbbell.fill")
                     .rotationEffect(Angle(degrees: 125))
                     .font(.system(size: 28))
-                    .padding(.leading)
+                
                 Text("FitMe")
                     .font(.title)
+                    .bold()
+                
                 Spacer()
+                
                 AvatarView(initials: "CY")
                     .accessibilityLabel("Profile")
-                    .padding()
-            }.background(Color(.systemBackground))
-        }
-        
-        // Body
-        VStack(){
-            HStack{
+            }
+            .padding(.horizontal)
+            .background(Color(.systemBackground))
+            
+            // --- Body ---
+            VStack(alignment: .leading, spacing: 4) {
                 Text("Welcome back,")
                     .font(.title2)
-                    .padding()
-                Spacer()
+                    .foregroundStyle(.secondary)
+                
+                Text("User")
+                    .font(.largeTitle)
+                    .fontWeight(.bold)
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
-        }
-        
-        
-        
-        
-        // Bottom
-        TabView{
-            Text("Home")
-                .tabItem {
-                    Label("Home", systemImage: "house")
-                }
-            Text("Workouts")
-                .tabItem{
-                    Label("Workouts", systemImage: "dumbbell")
-                }
-            Text("Excercises")
-                .tabItem{
-                    Label("Excercises", systemImage: "book")
-                }
-            Text("Progress")
-                .tabItem{
-                    Label("Progress", systemImage: "chart.line.uptrend.xyaxis")
-                }
-            Text("Account")
-                .tabItem{
-                    Label("Account", systemImage: "person")
-                }
+            .padding()
+            Spacer() // Pushes content up and TabView down
+            
+            // --- Bottom Navigation ---
+            TabView {
+                Text("Home Content")
+                    .tabItem { Label("Home", systemImage: "house") }
+                
+                Text("Workouts Content")
+                    .tabItem { Label("Workouts", systemImage: "dumbbell") }
+                
+                Text("Exercises Content")
+                    .tabItem { Label("Exercises", systemImage: "book") }
+                
+                Text("Progress Content")
+                    .tabItem { Label("Progress", systemImage: "chart.line.uptrend.xyaxis") }
+                
+                Text("Account Content")
+                    .tabItem { Label("Account", systemImage: "person") }
+            }
+            .frame(height: 100) // Note: Usually TabView is the root view, see below
         }
     }
 }
-
 
 
 struct AvatarView: View {
