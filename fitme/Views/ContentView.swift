@@ -21,8 +21,7 @@ struct ContentView: View {
                     Label("Workouts", systemImage: "dumbbell")
                 }
 
-            // You can add ExercisesView, ProgressView, etc., here similarly
-            Text("Progress Screen")
+            ProgressView()
                 .tabItem {
                     Label("Progress", systemImage: "chart.line.uptrend.xyaxis")
                 }
