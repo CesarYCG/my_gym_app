@@ -53,28 +53,14 @@ struct HomeView: View {
             }
             .padding([.horizontal, .bottom])
             
+            // Today's Workout
+            TodaysWorkoutCard(
+                workoutName: "Chest Day",
+                duration: 2,
+                action: startWorkout
+            )
             
-            // Today's workout
-            VStack(alignment: .leading){
-                Text("Today's Workout:")
-                    .font(.headline)
-                    .padding([.top, .leading])
-                Text("Workout Name - [#min] min")
-                    .font(.body)
-                    .padding(.horizontal)
-                Button(action: startWorkout){
-                    Label("Start Workout", systemImage:"play.fill")
-                }
-                .buttonStyle(.borderedProminent)
-                .tint(.white)
-                .foregroundStyle(.black)
-                .controlSize(.large)
-                .padding([.leading, .bottom])
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .background(Color.emerald)
-            .clipShape(RoundedRectangle(cornerRadius: 20))
-            .padding(.horizontal)
+
 
             
             
@@ -129,6 +115,35 @@ struct MetricCard: View{
         .padding()
         .background(Color(.secondarySystemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
+}
+
+struct  TodaysWorkoutCard: View{
+    let workoutName: String
+    let duration: Int
+    let action: () -> Void
+    
+    var body: some View{
+        VStack(alignment: .leading){
+            Text("Today's Workout:")
+                .font(.headline)
+                .padding([.top, .leading])
+            Text("\(workoutName) - \(duration) min")
+                .font(.body)
+                .padding(.horizontal)
+            Button(action: action){
+                Label("Start Workout", systemImage:"play.fill")
+            }
+            .buttonStyle(.borderedProminent)
+            .tint(.white)
+            .foregroundStyle(.black)
+            .controlSize(.large)
+            .padding([.leading, .bottom])
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(Color.emerald)
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .padding(.horizontal)
     }
 }
 
