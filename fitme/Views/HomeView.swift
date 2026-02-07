@@ -40,35 +40,19 @@ struct HomeView: View {
             }
             .padding()
             
-            // 2x2 Grid of main metrics
-            VStack(){
-                HStack(){
-                    VStack(){
-                        Image(systemName: "flame")
-                        Text("Calories Burned")
-                        Text("300 cal")
-                    }
-                    VStack(){
-                        Image(systemName: "figure.strengthtraining.traditional")
-                        Text("Finished Workouts")
-                        Text("24")
-                    }
-                }
-                HStack(){
-                    VStack(){
-                        Image(systemName: "timer")
-                        Text("Total Time")
-                        Text("12h")
-                    }
-                    VStack(){
-                        Image(systemName: "trophy")
-                        Text("Achievements")
-                        Text("12")
-                    }
+            // Scalable 2x2 grid
+            let columns = [
+                GridItem(.flexible()),
+                GridItem(.flexible())
+            ]
+            
+            LazyVGrid(columns: columns, spacing: 20) {
+                ForEach(metrics){
+                    metric in MetricCard(metric: metric)
                 }
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
             .padding([.horizontal, .bottom])
+            
             
             // Today's workout
             VStack(alignment: .leading){
@@ -99,6 +83,8 @@ struct HomeView: View {
     }
 }
 
+// MARK: - Subviews
+
 struct AvatarView: View {
     var initials: String
     var image: Image? = nil
@@ -126,6 +112,42 @@ struct AvatarView: View {
         .contentShape(Circle())
     }
 }
+
+struct MetricCard: View{
+    let metric: Metric
+    var body: some View{
+        VStack(alignment: .leading){
+            Image(systemName: metric.icon)
+                .foregroundStyle(metric.iconColor)
+            Text(metric.title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text(metric.value)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.headline)
+        }
+        .frame(maxWidth: .infinity)
+        .padding()
+        .background(Color(.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
+}
+
+// MARK: - Models
+
+struct Metric: Identifiable {
+    let id = UUID()
+    let icon: String
+    let title: String
+    let value: String
+    let iconColor: Color
+}
+
+let metrics: [Metric] = [
+    .init(icon: "flame", title: "Calories Burned", value: "300", iconColor:.orangeCoral),
+    .init(icon: "figure.strengthtraining.traditional", title: "Finished Workouts", value: "24", iconColor: .black),
+    .init(icon: "timer", title: "Total Time", value:"56h", iconColor: .purpleBlue),
+    .init(icon: "trophy", title: "Achievements", value:"12", iconColor: .yellowLime)
+]
 
 #Preview {
     HomeView()
