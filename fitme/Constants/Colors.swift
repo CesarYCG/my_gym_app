@@ -17,6 +17,6 @@ extension Color {
     static let tealCyan: Color = Color(red: 0.247, green: 0.859, blue: 0.702)
     static let yellowLime: Color = Color(red: 0.886, green: 0.843, blue: 0.341)
     static let magentaPink: Color = Color(red: 0.863, green: 0.286, blue: 0.847)
-    static let orangeCoral: Color = Color(red: 0.937, green: 0.267, blue: 0.929)
+    static let orangeCoral: Color = Color(red: 0.937, green: 0.431, blue: 0.365)
 }
 
