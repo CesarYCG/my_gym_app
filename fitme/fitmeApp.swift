@@ -16,3 +16,6 @@ struct fitmeApp: App {
     }
 }
 
+#Preview{
+    ContentView()
+}
