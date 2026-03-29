@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-struct ProgressView : View {
+struct UserProgressView : View {
     var body: some View {
         Text("Your Progress data will appear here!")
     }

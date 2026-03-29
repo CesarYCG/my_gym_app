@@ -6,6 +6,6 @@ import Supabase
 /// - IMPORTANT: Replace `YOUR_SUPABASE_URL` and `YOUR_SUPABASE_ANON_KEY` 
 ///   with your actual database credentials from your Supabase Project Settings.
 let supabase = SupabaseClient(
-    supabaseURL: URL(string: "YOUR_SUPABASE_URL")!,
-    supabaseKey: "YOUR_SUPABASE_ANON_KEY"
+    supabaseURL: URL(string: "https://sbejnakkunyfupdlrmwx.supabase.co")!,
+    supabaseKey: "sb_publishable_XrBsilrKoBM3QqoEqRlnlw_ry_rRMkx"
 )
