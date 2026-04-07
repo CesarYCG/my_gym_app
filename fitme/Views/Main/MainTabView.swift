@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Supabase
 
 struct MainTabView: View {
 
@@ -26,25 +25,6 @@ struct MainTabView: View {
                 .tabItem {
                     Label("Progress", systemImage: "chart.line.uptrend.xyaxis")
                 }
-        } // Just A quick try for settup of DB
-        .onAppear {
-            Task {
-                do {
-                    // Test fetch to the "User" table
-                    let response = try await supabase
-                        .from("User")
-                        .select()
-                        .execute()
-                    
-                    if let stringData = String(data: response.data, encoding: .utf8) {
-                        print("✅ Supabase Connection Successful!")
-                        print("Data in 'User': \(stringData)")
-                    }
-                } catch {
-                    print("❌ Supabase Connection Failed:")
-                    print(error.localizedDescription)
-                }
-            }
         }
     }
 }
