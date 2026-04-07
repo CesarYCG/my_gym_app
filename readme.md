@@ -40,8 +40,13 @@ Here is an overview of the main directories in this project and what they contai
 
 - **`fitme/`**: The core application source code directory.
   - **`fitmeApp.swift`**: The main entry point and setup of the SwiftUI application.
-  - **`Views/`**: Contains the SwiftUI views that define the layouts and user interface of the app.
   - **`Constants/`**: Holds constant values, app configurations, or reusable static data.
+  - **`db/`**: Configuration and models for the database (e.g., Supabase configuration).
+  - **`Managers/`**: Contains controllers and managers for app logic, like the `AuthManager` for authentication states.
+  - **`Views/`**: Contains the SwiftUI views that define the layouts and user interface of the app.
+    - **`Auth/`**: Views related to the authentication flow (e.g., Login, Sign Up).
+    - **`Main/`**: Core application views after a successful login (e.g., Home, Workouts, Progress, MainTabView).
+    - **`ContentView.swift`**: The main routing view that decides whether to show the auth flow or the main application based on session state.
   - **`Assets.xcassets/`**: The unified asset catalog containing images, app icons, and custom colors used in the UI.
 
 - **`fitme.xcodeproj/`**: The Xcode project package. It contains the essential build settings, targets, schema configurations, and file references necessary for Xcode to compile the code.
