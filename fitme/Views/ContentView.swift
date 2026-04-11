@@ -16,7 +16,9 @@ struct ContentView: View {
                 MainTabView() 
             } else {
                 // Else, go to sign in
-                LoginView(isAuthenticated: $isAuthenticated)
+                NavigationStack {
+                    LoginView(isAuthenticated: $isAuthenticated)
+                }
             }
         }
         .onAppear {

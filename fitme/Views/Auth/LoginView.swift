@@ -119,9 +119,11 @@ struct LoginView: View {
         HStack {
             Text("Don't have an account?")
                 .foregroundStyle(.secondary)
-            Text("Sign Up")
-                .fontWeight(.bold)
-                .foregroundStyle(Color.emerald)
+            NavigationLink ( destination: SignUpView()){
+                Text("Sign Up")
+                    .fontWeight(.bold)
+                    .foregroundStyle(Color.emerald)
+            }
         }
         .font(.footnote)
     }
