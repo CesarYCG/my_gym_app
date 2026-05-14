@@ -1,5 +1,6 @@
 import SwiftUI
 import Supabase
+import OSLog
 
 struct SignUpView: View {
     
@@ -13,6 +14,12 @@ struct SignUpView: View {
     @State private var errorMessage = ""
     
     private let genders = ["Male", "Female", "Other"]
+    
+    private let dateFormatter: ISO8601DateFormatter = {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions = [.withFullDate]
+        return formatter
+    }()
     
     enum Field: Hashable {
         case firstName
@@ -236,14 +243,15 @@ struct SignUpView: View {
                 _ = try await supabase.auth.signUp(email: email, 
                                                 password: password,
                                                 data: [
-                                                    "first_name": firstName,
-                                                    "last_name": lastName,
-                                                    "birth_date": dateofBirth,
-                                                    "gender": selectedGender,
-                                                    "email": email,
-                                                ])
+                                                    "first_name": .string(firstName),
+                                                    "last_name": .string(lastName),
+                                                    "birth_date": .string(dateFormatter.string(from: dateofBirth)),
+                                                    "gender": .string(selectedGender),
+                                                    "email": .string(email),
+                                                ]
+                                            )
             } catch {
-                errorMessage = error.localizedDescription
+                os_log(.error, log: OSLog.default, "Sign up failed: %{public}s", error.localizedDescription)
             }
         }
     }
