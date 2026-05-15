@@ -13,6 +13,8 @@ struct SignUpView: View {
     @State private var confirmPassword: String = ""
     @State private var errorMessage = ""
     
+    private static let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "SignUp", category: "Auth")
+    
     private let genders = ["Male", "Female", "Other"]
     
     private let dateFormatter: ISO8601DateFormatter = {
@@ -250,10 +252,36 @@ struct SignUpView: View {
                                                     "email": .string(email),
                                                 ]
                                             )
+                Self.logger.info("Sign up successful: \(self.email)")
             } catch {
-                os_log(.error, log: OSLog.default, "Sign up failed: %{public}s", error.localizedDescription)
+                Self.logger.error("Sign up failed: \(error.localizedDescription)")
             }
         }
+    }
+
+    // MARK: - Input Validations
+    func isPasswordValid(password: String) -> Bool {
+        guard password.count >= 8 else { return false }
+        guard password.contains(/[A-Z]/) else { return false }
+        guard password.contains(/[a-z]/) else { return false }
+        guard password.contains(/[0-9]/) else { return false }
+        guard password.contains(/[-._@&]/) else { return false }
+        return true
+    }
+
+    func isPasswordMatch(password: String, confirmedPassword: String) -> Bool {
+        guard password == confirmedPassword else { return false }
+        return true
+    }
+
+    func isEmailValid(email: String) -> Bool {
+        let emailRegex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,}$"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
+    }
+
+    func isNameValid(name: String) -> Bool {
+        guard name.count >= 3 else { return false }
+        return true
     }
 
     // MARK: - Form Validation
